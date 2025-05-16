@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/dist/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Phoenix News</title>
+</head>
+<body class="box-border bg-[#f7fbef]">
+    <div>
+        <nav class="flex flex-row fixed top-0 left-0 justify-between md:px-7 lg:px-[180px] sm:px-6 py-3 bg-red-500 shadow-md w-full z-50">
+            <div class="flex flex-row items-center text-2xl font-extrabold">
+                <div class="text-black">
+                    PHOENIX
+                </div>
+                <div class="text-lime-200">
+                    NEWS
+                </div>
+            </div>
+            <div class="text-lg items-center font-semibold text-lime-50 hidden md:ml-6 md:flex md:space-x-8">
+                <div class="flex flex-row gap-8 pr-[100px]">
+                    <a href="index.html" class="text-black hover:text-lime-200 active:text-lime-100 focus:underline focus:text-lime-300">
+                        News
+                    </a>
+                    <a href="profile.html" class="hover:text-lime-200 hover:ease-in-out active:text-lime-100 focus:underline focus:text-lime-300">
+                        Categories
+                    </a>
+                    <a href="level.html" class="hover:text-lime-200 hover:ease-in-out active:text-lime-100 focus:underline focus:text-lime-300">
+                        Features
+                    </a>
+                    <a href="#" class="hover:text-lime-200 hover:ease-in-out active:text-lime-100 focus:underline focus:text-lime-300">
+                        Community
+                    </a>
+                    <a href="#" class="hover:text-lime-200 hover:ease-in-out active:text-lime-100 focus:underline focus:text-lime-300">
+                        About PN
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-6">
+                        <input type="search" placeholder="What are you looking for?" class="text-base h-10 px-5 bg-lime-50 rounded-[30px] w-[350px] outline-none placeholder-slate-400 hover:placeholder-slate-600 hover:ease-in-out">
+                        <img src="image/search.png" class="relative right-16 top-3 transform -translate-y-1/2 text-gray-400" width="20"
+                        height="20" alt="">
+                </div>
+            </div>
+            <div class="flex items-center md:hidden">
+                <button id="menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-lime-50 hover:text-lime-200 focus:text-lime-300">
+                  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+            </div>
+        </nav>
+        <header>
+            <div class="flex flex-col">
+                <div class="flex flex-col justify-between px-6 xl:px-[300px]">
+                    <div class="flex flex-col pt-[50px] sm:pt-[150px] animate-fade-from-top">
+                        <h2 class="text-3xl md:text-4xl font-extrabold">
+                            Welcome to PhoenixNews
+                        </h2>
+                        <p class="text-lg font-bold text-slate-400">
+                            Read latest news and monitor social happenings around you.
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-6 h-5/6 animate-slide-from-left pt-[90px] sm:pt-[50px]" style="animation-delay: 0.3s;">
+                        <div>
+                            <img src="image/latest.jpeg" class="h-[400px] sm:h-full w-full md:w-[650px] rounded-lg" alt="">
+                            <div class="relative bottom-[100px] sm:bottom-[150px] h-[130px] p-4 md:p-6 bg-black text-white">
+                                <h3 class="font-bold text-2xl sm:text-3xl md:text-4xl">Latest News in Nigeria</h3>
+                                <p class="text-base">Nigerian Military speaks on insurgence in Borno, reassures Nigerians.</p>
+                                <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.premiumtimesng.com%2Fregional%2Fnnorth-east%2F794142-nigerian-military-speaks-on-insurgents-attacks-in-borno-reassures-citizens.html&psig=AOvVaw2Lf8f7DSwvO1T4ct0sPgIN&ust=1747488691251000&source=images&cd=vfe&opi=89978449&ved=0CBgQjhxqFwoTCICw0OeMqI0DFQAAAAAdAAAAABAE" class="hover:text-red-500">Read more</a>
+                            </div>
+                        </div>
+                        <div class="hidden md:flex flex-col gap-7 w-1/2 sm:text-xl sm:font-medium md:font-bold md:text-2xl">
+                            <div class="flex flex-row gap-3">
+                                <img src="image/enter.png" class="w-1/2 h-full rounded-lg" alt="">
+                                <div class="flex flex-col justify-between">
+                                    <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.naijanews.com%2Fentertainment%2F&psig=AOvVaw3MTAaeZtRQH-s2IqLRD5NW&ust=1747488343326000&source=images&cd=vfe&opi=89978449&ved=0CBgQjhxqFwoTCNDss8WLqI0DFQAAAAAdAAAAABAE" class="hover:underline">Latest Entertainment News in Nigeria-<br> PhoenixNews</a>
+                                    <p class="flex flex-row gap-4 font-medium text-base">By Bizum<span>14/05/2025</span></p>
+                                </div>
+                            </div>
+                            <div class="flex flex-row gap-3">
+                                <img src="image/health.jpeg" class="w-1/2 h-full rounded-lg" alt="">
+                                <div class="flex flex-col justify-between">
+                                    <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Farticles.nigeriahealthwatch.com%2Ftop-ten-news-items-on-health-8th-october-2021%2F&psig=AOvVaw3O1j5SgtIGmDecoc0dqGUu&ust=1747488470973000&source=images&cd=vfe&opi=89978449&ved=0CBgQjhxqFwoTCOj60f6LqI0DFQAAAAAdAAAAABAE" class="hover:underline">Latest Health News in Nigeria-<br> PhoenixNews</a>
+                                    <p class="flex flex-row gap-4 font-medium text-base">By Unique<span>14/05/2025</span></p>
+                                </div>
+                            </div>
+                            <div class="flex flex-row gap-3">
+                                <img src="image/spor.jpeg" class="w-1/2 h-full rounded-lg" alt="">
+                                <div class="flex flex-col justify-between">
+                                    <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fpunchng.com%2Fnigerian-female-athletes-break-new-grounds%2F&psig=AOvVaw2xZbLdwUPp6wkbeYxXSJOU&ust=1747488542728000&source=images&cd=vfe&opi=89978449&ved=0CBgQjhxqFwoTCODT1qaMqI0DFQAAAAAdAAAAABAE" class="hover:underline">Latest Sport News in Nigeria-<br> PhoenixNews</a>
+                                    <p class="flex flex-row gap-4 font-medium text-base">By Jane-G<span>14/05/2025</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="px-6 sm:px-24 md:px-[200px] pt-[30px] sm:pt-[200px]">
+                        <div class="pb-8 flex flex-row justify-between">
+                            <p class="text-black text-3xl font-bold">
+                                Latest News
+                            </p>
+                            <button class="hidden sm:block border-black bg-lime-50 hover:bg-lime-100 py-2 px-3 rounded-lg"><a href="">Read more</a></button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12 animate-fade-from-top">
+                            <div class="flex flex-col gap-4">
+                                <img src="image/politics.jpeg" class="w-full h-full rounded-lg" alt="">
+                                <div class="flex flex-col gap-3">
+                                    <a href="" class="hover:underline">Latest Politics News in Nigeria-<br> PhoenixNews</a>
+                                    <p class="flex flex-row gap-3 font-medium text-base">By Paul<span>14/05/2025</span></p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <img src="image/ente1.jpeg" class="w-full h-full rounded-lg" alt="">
+                                <div class="flex flex-col gap-3">
+                                    <a href="" class="hover:underline">Latest Entertainment News in Nigeria-<br> PhoenixNews</a>
+                                    <p class="flex flex-row gap-3 font-medium text-base">By Tim<span>14/05/2025</span></p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <img src="image/edu1.jpeg" class="w-full h-full rounded-lg" alt="">
+                                <div class="flex flex-col gap-3">
+                                    <a href="" class="hover:underline">Latest Education News in Nigeria-<br> PhoenixNews</a>
+                                    <p class="flex flex-row gap-3 font-medium text-base">By Ola<span>14/05/2025</span></p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <img src="image/health1.jpeg" class="w-full h-full rounded-lg" alt="">
+                                <div class="flex flex-col gap-3">
+                                    <a href="" class="hover:underline">Latest Health News in Nigeria-<br> PhoenixNews</a>
+                                    <p class="flex flex-row gap-3 font-medium text-base">By Seun<span>14/05/2025</span></p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <img src="image/life1.jpeg" class="w-full h-full rounded-lg" alt="">
+                                <div class="flex flex-col gap-3">
+                                    <a href="" class="hover:underline">Latest Lifestyle News in Nigeria-<br> PhoenixNews</a>
+                                    <p class="flex flex-row gap-3 font-medium text-base">By Longji<span>14/05/2025</span></p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <img src="image/spor1.jpeg" class="w-full h-full rounded-lg" alt="">
+                                <div class="flex flex-col gap-3">
+                                    <a href="" class="hover:underline">Latest Sport News in Nigeria-<br> PhoenixNews</a>
+                                    <p class="flex flex-row gap-3 font-medium text-base">By Unique<span>14/05/2025</span></p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <img src="image/edu2.jpeg" class="w-full h-full rounded-lg" alt="">
+                                <div class="flex flex-col gap-3">
+                                    <a href="" class="hover:underline">Latest Education News in Nigeria-<br> PhoenixNews</a>
+                                    <p class="flex flex-row gap-3 font-medium text-base">By Bizum<span>14/05/2025</span></p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <img src="image/health2.jpeg" class="w-full h-full rounded-lg" alt="">
+                                <div class="flex flex-col gap-3">
+                                    <a href="" class="hover:underline">Latest Health News in Nigeria-<br> PhoenixNews</a>
+                                    <p class="flex flex-row gap-3 font-medium text-base">By Jane-G<span>14/05/2025</span></p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <img src="image/life2.jpeg" class="w-full h-full rounded-lg" alt="">
+                                <div class="flex flex-col gap-3">
+                                    <a href="" class="hover:underline">Latest Lifestyle News in Nigeria-<br> PhoenixNews</a>
+                                    <p class="flex flex-row gap-3 font-medium text-base">By Paul<span>14/05/2025</span></p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <img src="image/spor2.jpeg" class="w-full h-full rounded-lg" alt="">
+                                <div class="flex flex-col gap-3">
+                                    <a href="" class="hover:underline">Latest Sports News in Nigeria-<br> PhoenixNews</a>
+                                    <p class="flex flex-row gap-3 font-medium text-base">By Tim<span>14/05/2025</span></p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <img src="image/politics1.jpeg" class="w-full h-full rounded-lg" alt="">
+                                <div class="flex flex-col gap-3">
+                                    <a href="" class="hover:underline">Latest Politics News in Nigeria-<br> PhoenixNews</a>
+                                    <p class="flex flex-row gap-3 font-medium text-base">By Ola<span>14/05/2025</span></p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <img src="image/ente2.jpeg" class="w-full h-full rounded-lg" alt="">
+                                <div class="flex flex-col gap-3">
+                                    <a href="" class="hover:underline">Latest Entertainment News in Nigeria-<br> PhoenixNews</a>
+                                    <p class="flex flex-row gap-3 font-medium text-base">By Longji<span>14/05/2025</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+</body>
+</html>
