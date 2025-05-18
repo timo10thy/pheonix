@@ -32,34 +32,27 @@
     
     </div>
   
-    <div class="flex flex-col border-red-500 border-2 justify-center shadow-lg mt-9 md:mt-7 mx-[30px] md:mx-auto max-w-4xl w-auto h-4/5 md:h-3/4 px-1 py-1 md:px-6 md:py-2 bg-[#f7fbef] rounded-lg">
+    <div class="flex flex-col border-red-500 border-2 justify-center shadow-lg mt-9 md:mt-7 mx-[30px] md:mx-auto max-w-4xl w-auto h-4/5 px-1 py-1 md:px-6 md:py-2 bg-[#f7fbef] rounded-lg">
         <div class="flex justify-center">
             <div class="p-2 m-2 h-14 w-72 md:p-4 md:m-2 bg-gradient-to-r from-lime-50 via-[#ffffff] to-lime-50 shadow-md text-center md:h-20 md:w-[550px]">
                 <h2 class="text-2xl md:text-4xl font-bold text-black">Phoenix Registration</h2>
             </div>
         </div>
-        <p id="textCenter" class="text-[#f00a31] mx-4 md:mx-0 md-ml-40 pt-2"></p>
+        <p id="textCenter" class="text-[#f00a31] mx-4 md:mx-0 text-center pt-2"></p>
         <form class="flex flex-col md:w-full w-auto max-w-md mx-4 md:mx-0 md:ml-40 pt-3">
-            <label id="fullname1">Fullname</label> 
-            <input type="text" id="fullname" class="p-2 mb-2 text-base border border-red-400 h-10 hover:border-2  hover:ease-in-out hover:delay-200 focus:outline-none focus:border-red-500">
-            <label id="email-address1">Email address</label> 
-            <input type="email" id="email-address" class="p-2 mb-2 text-base border border-red-400 h-10 hover:border-2  hover:ease-in-out hover:delay-200 focus:outline-none focus:border-red-500">
-            <label id="Phone-number1">Phone number</label> 
-            <input type="number" id="Phone-number" class="p-2 mb-2 text-base border border-red-400 h-10 hover:border-2  hover:ease-in-out hover:delay-200 focus:outline-none focus:border-red-500">
-            <Label id="DOB1">Date of birth</Label> 
-            <input type="date" id="DOB" class="p-2 mb-2 text-base border border-red-400 h-10 hover:ease-in-out hover:border-2  hover:delay-200 focus:outline-none focus:border-red-500">
-            <label id="gender">Gender</label>
-            <div class="flex flex-row gap-3 mb-2">
-                <label>Male <input type="radio" name="gender" value="Male" class="accent-red-400"></label>
-                <label>Female <input type="radio" name="gender" value="Female" class="accent-red-400"></label>
-            </div>
-            <label id="password1" class="flex justify-between">Password <span id="showPass">👁️</span></label>
-            <input type="password" name="password" id="password" class="p-2 text-base border border-red-500 h-10 hover:border-2 hover:ease-in-out hover:delay-200 focus:outline-none focus:border-blue-500"><br>
-            <div class="flex flex-row gap-3">
-              <input type="submit" value="Submit" class="py-2 px-2 w-1/2 mb-3 rounded-[7px] shadow-lg bg-gradient-to-r from-red-200 via-lime-50 to-red-200 border border-[#ffe8ec] hover:font-medium">
-              <input type="reset" value="Clear" class="py-2 px-2 w-1/2 mb-3 rounded-[7px] shadow-lg bg-gradient-to-r from-red-200 via-lime-50 to-red-200 border border-[#ffe8ec] hover:font-medium">
-            </div>
-        </form>
+          <label id="fullname1">Fullname</label> 
+          <input type="text" id="fullname" class="p-2 mb-2 text-base border border-red-400 h-10 hover:border-2  hover:ease-in-out hover:delay-200 focus:outline-none focus:border-red-500">
+          <label id="email-address1">Email address</label> 
+          <input type="email" id="email-address" class="p-2 mb-2 text-base border border-red-400 h-10 hover:border-2  hover:ease-in-out hover:delay-200 focus:outline-none focus:border-red-500">
+          <label id="password1" class="flex justify-between">Password <span id="showPass">👁️</span></label>
+          <input type="password" name="password" id="password" class="p-2 text-base border border-red-400 h-10 hover:border-2 hover:ease-in-out hover:delay-200 focus:outline-none focus:border-red-500">
+          <label id="team_name">Team</label> 
+          <input type="text" id="team" class="p-2 mb-2 text-base border border-red-400 h-10 hover:border-2  hover:ease-in-out hover:delay-200 focus:outline-none focus:border-red-500"><br>
+          <div class="flex flex-row gap-3">
+            <input type="submit" value="Submit" class="py-2 px-2 w-1/2 mb-3 rounded-[7px] shadow-lg bg-gradient-to-r from-red-200 via-lime-50 to-red-200 border border-[#ffe8ec] hover:font-medium">
+            <input type="reset" id="clear" value="Clear" class="py-2 px-2 w-1/2 mb-3 rounded-[7px] shadow-lg bg-gradient-to-r from-red-200 via-lime-50 to-red-200 border border-[#ffe8ec] hover:font-medium">
+          </div>
+      </form>
         <div id="details" class="mt-4 mx-10 md:mx-auto w-[300px] md:ml-40 text-sm md:text-base text-black bg-white p-4 rounded shadow-md border border-[#b31e37] hidden"></div>
     </div>
   </div>
@@ -75,17 +68,12 @@
         })
       };
       let isValid = true
-      let fullname = form.querySelector("input[type='text']").value
-      let email = form.querySelector("input[type='email']").value
-      let phone = form.querySelector("input[type='number']").value
-      let dateBirth = form.querySelector("input[type='date']").value
-      let gender = form.querySelector("input[name='gender']:checked")     
+      let name = document.getElementById("fullname").value
+      let email = form.querySelector("input[type='email']").value     
       let password = form.querySelector("input[type='password']").value
-      let birthYear = new Date(dateBirth).getFullYear();
-      let currentYear = new Date().getFullYear();
-      let age = currentYear - birthYear
+      let team_name = document.getElementById("team").value
 
-      if (!fullname){
+      if (!name){
         isValid = false
         let span = document.createElement("span")
         span.innerText = ' Fullname can not be empty'
@@ -107,35 +95,6 @@
           span.style.color = '#f00a31'
           document.getElementById("email-address1").appendChild(span)
           }
-      }
-      if (!phone){
-        isValid = false
-        let span = document.createElement("span")
-        span.innerText = ' Phone number can not be empty'
-        span.style.color = '#f00a31'
-        document.getElementById("Phone-number1").appendChild(span)
-      }
-      if (!dateBirth){
-        isValid = false
-        let span = document.createElement("span")
-        span.innerText = ' Date of birth can not be empty'
-        span.style.color = '#f00a31'
-        document.getElementById("DOB1").appendChild(span)
-      } else {
-        if (age < 19){
-          isValid = false
-          let span = document.createElement("span")
-          span.innerText = ' User must be above 18'
-          span.style.color = '#f00a31'
-          document.getElementById("DOB1").appendChild(span)
-          }
-      }
-      if (!gender || gender.value !== "Female"){
-        isValid = false
-        let span = document.createElement("span")
-        span.innerText = ' Only female users allowed'
-        span.style.color = '#f00a31'
-        document.getElementById("gender").appendChild(span)
       }
       if (!password){
         isValid = false
@@ -163,11 +122,26 @@
           document.getElementById("password1").appendChild(span)
         }
       }
+      if (!team_name){
+        isValid = false
+        let span = document.createElement("span")
+        span.innerText = ' Team name can not be empty'
+        span.style.color = '#f00a31'
+        document.getElementById("team_name").appendChild(span)
+      } else {
+        if (team_name != "Phoenix" || "404" || "Titans" || "Pull request" || "Elon" ){
+          isValid = false
+          let span = document.createElement("span")
+          span.innerText = ' User must be a member of a team'
+          span.style.color = '#f00a31'
+          document.getElementById("team_name").appendChild(span)
+          }
+      }
       if (isValid){
         form.style.display = "none"
         let details = document.getElementById("details")
         details.classList.remove("hidden")
-        details.innerHTML = `<h2 class="text-xl font-bold mb-2 text-[#b31e37]">Submitted Details</h2><ul class="list-disc ml-6"><li><strong>Fullname:</strong> ${fullname}</li><li><strong>Email:</strong> ${email}</li><li><strong>Phone:</strong> ${phone}</li><li><strong>Date of Birth:</strong> ${dateBirth}</li><li><strong>Gender:</strong> ${gender.value}</li></ul>`
+        details.innerHTML = `<h2 class="text-xl font-bold mb-2 text-[#b31e37]">Submitted Details</h2><ul class="list-disc ml-6"><li><strong>Fullname:</strong> ${name}</li><li><strong>Email:</strong> ${email}</li><li><strong>Team:</strong> ${team_name}</li></ul>`
       } else {
         document.getElementById("textCenter").innerText = 'Please correct highlighted error(s)'
       }
@@ -184,6 +158,18 @@
         pass.type = "password"
       }
     })
+    let clear = document.getElementById("clear")
+    clear.addEventListener("click", (e) => {
+    e.preventDefault();
+    form.querySelectorAll("input").forEach(input => {
+      if (input.type !== "submit" && input.type !== "reset") {
+        input.value = "";
+      }
+    });
+    form.querySelectorAll("span").forEach(span => span.remove());
+    document.getElementById("textCenter").innerText = "";
+    });
+
   </script>
   </body>
   </html>
