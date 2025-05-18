@@ -50,6 +50,27 @@
                   </svg>
                 </button>
             </div>
+            <!--Mobile menu-->
+            <div id="mobile-menu" class=" fixed   left-0 w-full  shadow-md h-screen bg-red-500 z-50 pt-16  hidden  md:hidden">
+                <div class="  text-lime-50 pt-2 pb-3 space-y-1 ">
+                        <h1 class=" text-3xl p-2">Explore Categories  </h1>
+                    <a href="index.html" class="border-transparent leading-10   text-lime-50 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                        News
+                    </a> <hr class="bg-gray-400 opacity-25 mt-5 mx-4">
+                    <a href="profile.html" class=" border-transparent  text-lime-50 leading-10 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                        Categories
+                    </a> <hr class="bg-gray-400 opacity-25 mt-5 mx-4">
+                    <a href="level.html" class="  text-lime-50 hover:bg-gray-50 leading-10 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                        Features
+                    </a><hr class="bg-gray-400 opacity-25 mt-5 mx-4">
+                    <a href="#"  class=" border-transparent   text-lime-50 leading-10 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                        Community
+                    </a><hr class="bg-gray-400 opacity-25 mt-5 mx-4">
+                    <a href="#" class=" border-transparent   text-lime-50 leading-10 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                        About PN
+                    </a><hr class="bg-gray-400 mt-5 opacity-25 mx-4">
+                </div>
+        </div>
         </nav>
         <header>
             <div class="flex flex-col">
@@ -195,5 +216,16 @@
             </div>
         </header>
     </div>
+     <script>
+         let hamburger  = document.getElementById("menu-btn")
+          hamburger.addEventListener( 'click', function(){
+            let mobileM = document.getElementById("mobile-menu")
+              if( mobileM.classList.contains("hidden")){
+                 mobileM.classList.remove("hidden");
+              }else{
+                mobileM.classList.add("hidden")
+              }
+          })
+    </script>
 </body>
 </html>
