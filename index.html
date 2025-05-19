@@ -38,7 +38,7 @@
             </div>
         </div>
         <p id="textCenter" class="text-[#f00a31] mx-4 md:mx-0 text-center pt-2"></p>
-        <form class="flex flex-col md:w-full w-auto max-w-md mx-4 md:mx-0 md:ml-40 pt-3">
+        <form id="register-form" class="flex flex-col md:w-full w-auto max-w-md mx-4 md:mx-0 md:ml-40 pt-3 ">
           <label id="fullname1">Fullname</label> 
           <input type="text" id="fullname" class="p-2 mb-2 text-base border border-red-400 h-10 hover:border-2  hover:ease-in-out hover:delay-200 focus:outline-none focus:border-red-500">
           <label id="email-address1">Email address</label> 
@@ -168,6 +168,40 @@
     form.querySelectorAll("span").forEach(span => span.remove());
     document.getElementById("textCenter").innerText = "";
     });
+
+    document.getElementById("register-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let team_name = document.getElementById("team").value.trim();
+
+    fetch("https://test.blockfuselabs.com/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "accept": "application/json",
+      },
+      body: JSON.stringify({ name, email, password, team_name }),
+    })
+    .then(async (response) => {
+      const data = await response.json();
+      if (response.ok) {
+        alert("User registered successfully!");
+        console.log("Registration successful. You can now log in:", data);
+        afterSuccessfulRegistration();
+      } else {
+        if (data.message && data.message.toLowerCase().includes("email")) {
+          alert(data.message);
+          afterUserAlreadyRegistered();
+        } else {
+          alert(data.message || "Registration failed.");
+        }
+        console.error("Registration error:", data);
+      }
+    })
+  })
 
   </script>
   </body>
