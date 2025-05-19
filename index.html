@@ -128,13 +128,14 @@
         span.style.color = '#f00a31'
         document.getElementById("team_name").appendChild(span)
       } else {
-        if (team_name != "Phoenix" && "404" && "Titans" && "Pull request" && "Elon" ){
-          isValid = false
-          let span = document.createElement("span")
-          span.innerText = ' User must be a member of a team'
-          span.style.color = '#f00a31'
-          document.getElementById("team_name").appendChild(span)
-          }
+        const validTeams = ["Phoenix", "404", "Titans", "Pull request", "Elon"];
+        if (!validTeams.includes(team_name)) {
+          isValid = false;
+          let span = document.createElement("span");
+          span.innerText = ' User must be a member of a team';
+          span.style.color = '#f00a31';
+          document.getElementById("team_name").appendChild(span);
+        }
       }
       if (isValid){
         form.style.display = "none"
