@@ -38,7 +38,7 @@
                 <h2 class="text-2xl md:text-4xl font-bold text-black">Welcome back</h2>
             </div>
         </div>
-        <form class="flex flex-col md:w-full w-auto max-w-md mx-4 md:mx-0 md:ml-40 pt-5 gap-3">
+        <form id="login-form" class="flex flex-col md:w-full w-auto max-w-md mx-4 md:mx-0 md:ml-40 pt-5 gap-3">
             <input type="email" id="email-address" placeholder="E-mail" class="border border-red-400 p-2 text-base h-10 ml-10 hover:border-2  hover:ease-in-out hover:delay-200 focus:outline-none focus:border-red-500 placeholder-slate-400 hover:placeholder-slate-600">
             <input type="password" id="password" placeholder="Your password" class="border border-red-400 p-2 text-base h-10 ml-10 hover:border-2 hover:ease-in-out hover:delay-200 focus:outline-none focus:border-red-500 placeholder-slate-400 hover:placeholder-slate-600"><br>
             <button id="btnbg" class="py-2 px-2 mb-3 ml-10 rounded-[7px] shadow-lg bg-gradient-to-r from-red-200 via-lime-50 to-red-200 border border-[#ffe8ec] hover:font-medium">Log in</button>
@@ -48,6 +48,37 @@
     </div>
     <div class="relative z-50"><a href="https://github.com/Unique-Ikeoluwa/to-do/commit/a4cabbb63b82c58639ca7cc868f1b178b1ef08d3">Git repo</a></div>
   </div>
+  <script>
+     document.getElementById("login-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let email = document.getElementById("login-email").value;
+    let password = document.getElementById("login-password").value;
+
+    fetch("https://test.blockfuselabs.com/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "accept": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    })
+      .then(async (response) => {
+        const data = await response.json();
+        if (response.ok) {
+          alert("Login successful!");
+          console.log("Login success:", data);
+        } else {
+          alert(data.message || "Login failed.");
+          console.error("Login error:", data);
+        }
+      })
+      .catch((error) => {
+        console.error("Network error during login:", error);
+        alert("Network error.");
+      });
+  });
+  </script>
 </body>
   
 </html>
