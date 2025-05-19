@@ -24,9 +24,12 @@
                     <a href="news.html" class="text-black hover:text-lime-200 active:text-lime-100 focus:underline focus:text-lime-300">
                         News
                     </a>
-                    <a href="#" class="hover:text-lime-200 hover:ease-in-out active:text-lime-100 focus:underline focus:text-lime-300">
-                        Categories
-                    </a>
+                    <div class="relative group">
+                        <a href="profile.html" id="category" class="hover:text-lime-200">Categories</a>
+                        <ul id="category-list-desktop" class="absolute hidden group-hover:block mt-2 bg-white text-black p-3 rounded shadow-md z-50">
+                          <!-- Categories will be added dynamically -->
+                        </ul>
+                      </div>
                     <a href="#" class="hover:text-lime-200 hover:ease-in-out active:text-lime-100 focus:underline focus:text-lime-300">
                         Features
                     </a>
@@ -57,9 +60,12 @@
                     <a href="news.html" class="border-transparent leading-10   text-lime-50 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
                         News
                     </a> <hr class="bg-gray-400 opacity-25 mt-5 mx-4">
-                    <a href="#" class=" border-transparent  text-lime-50 leading-10 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                        Categories
-                    </a> <hr class="bg-gray-400 opacity-25 mt-5 mx-4">
+                    <div class="mt-4">
+                        <a href="profile.html" id="category-mobile" class="block text-lime-50">Categories</a>
+                        <ul id="category-list-mobile" class="hidden mt-2 text-lime-100 pl-5">
+                          <!-- Categories will be added dynamically -->
+                        </ul>
+                      </div><hr class="bg-gray-400 opacity-25 mt-5 mx-4">
                     <a href="#" class="  text-lime-50 hover:bg-gray-50 leading-10 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
                         Features
                     </a><hr class="bg-gray-400 opacity-25 mt-5 mx-4">
@@ -336,6 +342,45 @@
                 mobileM.classList.add("hidden")
               }
           })
+
+         document.addEventListener('DOMContentLoaded', function () {
+        const desktopList = document.getElementById('category-list-desktop');
+        const mobileList = document.getElementById('category-list-mobile');
+        const mobileToggle = document.getElementById('category-mobile');
+      
+        
+        fetch('https://test.blockfuselabs.com/api/categories')
+          .then(response => response.json())
+          .then(data => {
+            console.log('API Response:', data);
+      
+            const categories = data.categories || data.data || data; 
+      
+            if (Array.isArray(categories)) {
+              categories.forEach(category => {
+                const liDesktop = document.createElement('li');
+                liDesktop.innerHTML = `<a href="category.html?name=${category.name || category}" class="block px-4 py-2 hover:bg-lime-100">${category.name || category}</a>`;
+                desktopList.appendChild(liDesktop);
+      
+                const liMobile = document.createElement('li');
+                liMobile.innerHTML = `<a href="category.html?name=${category.name || category}" class="block py-2">${category.name || category}</a>`;
+                mobileList.appendChild(liMobile);
+              });
+            } else {
+              console.error('Error: Categories data is not an array:', categories);
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching categories:', error);
+          });
+      
+        mobileToggle.addEventListener('click', function (e) {
+          e.preventDefault();
+          console.log('Mobile toggle clicked');
+          mobileList.classList.toggle('hidden');
+        });
+      });
+      
     </script>
 </body>
 </html>
