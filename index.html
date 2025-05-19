@@ -57,8 +57,7 @@
   </div>
   <script>
     let form = document.querySelector('form')
-    let submit = document.querySelector('input[type=submit]')
-    submit.addEventListener('click', (e) => {
+    form.addEventListener('submit', (e) => {
       e.preventDefault()
       let spans = form.querySelectorAll('span')
       if (spans.length > 0){
@@ -112,7 +111,7 @@
         let hasNum = /[0-9]/.test(password)
         let hasCap = /[A-Z]/.test(password)
         let hasSmall = /[a-z]/.test(password)
-        let symbol = /[!@#$%^&*(),.<>?":|{}"]/.test(password)
+        let symbol = /[!@#$%^&*(),.<>?":|{}]/.test(password)
         if (!hasNum || !hasCap || !hasSmall || !symbol ){
           isValid = false
           let span = document.createElement("span")
@@ -169,41 +168,6 @@
     form.querySelectorAll("span").forEach(span => span.remove());
     document.getElementById("textCenter").innerText = "";
     });
-
-    document.getElementById("register-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-    let team_name = document.getElementById("team").value.trim();
-
-    fetch("https://test.blockfuselabs.com/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "accept": "application/json",
-      },
-      body: JSON.stringify({ name, email, password, team_name }),
-    })
-    .then(async (response) => {
-      const data = await response.json();
-      if (response.ok) {
-        alert("User registered successfully!");
-        console.log("Registration successful. You can now log in:", data);
-        afterSuccessfulRegistration();
-      } else {
-        if (data.message && data.message.toLowerCase().includes("email")) {
-          alert(data.message);
-          afterUserAlreadyRegistered();
-        } else {
-          alert(data.message || "Registration failed.");
-        }
-        console.error("Registration error:", data);
-      }
-    })
-  })
-
   </script>
   </body>
   </html>
