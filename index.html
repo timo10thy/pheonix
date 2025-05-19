@@ -141,6 +141,31 @@
         let details = document.getElementById("details")
         details.classList.remove("hidden")
         details.innerHTML = `<h2 class="text-xl font-bold mb-2 text-red-500">Submitted Details</h2><ul class="list-disc ml-6"><li><strong>Fullname:</strong> ${name}</li><li><strong>Email:</strong> ${email}</li><li><strong>Team:</strong> ${team_name}</li></ul>`
+        fetch("https://test.blockfuselabs.com/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "accept": "application/json",
+        },
+        body: JSON.stringify({ name, email, password, team_name }),
+        })
+        .then(async (response) => {
+          const data = await response.json();
+          if (response.ok) {
+            alert("User registered successfully!");
+            console.log("Registration successful. You can now log in:", data);
+            afterSuccessfulRegistration();
+          } else {
+          if (data.message && data.message.toLowerCase().includes("email")) {
+            alert(data.message);
+            afterUserAlreadyRegistered();
+          } else {
+            alert(data.message || "Registration failed.");
+          }
+          console.error("Registration error:", data);
+        }
+          })
+
       } else {
         document.getElementById("textCenter").innerText = 'Please correct highlighted error(s)'
       }
