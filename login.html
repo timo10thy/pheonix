@@ -49,54 +49,5 @@
     <div class="relative z-50"><a href="https://github.com/Unique-Ikeoluwa/to-do/commit/a4cabbb63b82c58639ca7cc868f1b178b1ef08d3">Git repo</a></div>
   </div>
 </body>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form");
-    const emailInput = document.getElementById("email-address");
-    const passwordInput = document.getElementById("password");
-
-    localStorage.setItem("defaultEmail", "ikeoluwa@gmail.com");
-    localStorage.setItem("defaultPassword", "1234");
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const email = emailInput.value.trim();
-      const password = passwordInput.value.trim();
-
-      if (!email || !password) {
-        alert("Please fill in all fields.");
-        return;
-      }
-
-      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-      if (!emailPattern.test(email)) {
-        alert("Please enter a valid email address.");
-        return;
-      }
-
-      // Get valid credentials from localStorage
-      const validEmail = localStorage.getItem("defaultEmail");
-      const validPassword = localStorage.getItem("defaultPassword");
-
-      if (email === validEmail && password === validPassword) {
-        // Save successful login to localStorage
-        localStorage.setItem("email", email);
-        localStorage.setItem("password", password);
-        console.log(localStorage.getItem("email"));
-        console.log(localStorage.getItem("password"));
-        let paragraph = document.getElementById("hide");
-        paragraph.style.display = "none";
-        let details = document.getElementById("success");
-        details.classList.remove("hidden");
-        details.innerHTML = `
-          <h2 class="text-xl font-bold mb-2 text-[#b31e37]">Congratulations</h2>
-          <p class="ml-6">Login Successful</p>`;
-      } else {
-        alert("Invalid email or password. Try again.");
-      }
-    });
-  });
-
-  </script>  
+  
 </html>
