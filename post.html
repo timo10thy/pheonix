@@ -214,15 +214,14 @@
         return;
       }
   
-      fetch("https://test.blockfuselabs.com/api/posts", {
+      fetch("https://your-api.com/posts", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          accept: "application/json",
-          Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("userToken"),
         },
-        body: JSON.stringify({ title, content, category_id }),
-      })
+        body: JSON.stringify({ title, content, category }),
+        })
         .then(async (response) => {
           const data = await response.json();
           if (response.ok) {
