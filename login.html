@@ -40,12 +40,11 @@
         <form class="flex flex-col md:w-full w-auto max-w-md mx-2 md:mx-0 md:ml-40 pt-5 gap-3" id="login-form">
             <input type="email" id="login-email" placeholder="E-mail" class="border border-red-400 p-5 text-base h-10 ml-3 hover:border-2  hover:ease-in-out hover:delay-200 focus:outline-none focus:border-red-500 placeholder-slate-400 hover:placeholder-slate-600">
             <input type="password" id="login-password" placeholder="Your password" class="border border-red-400 p-5 text-base h-10 ml-3 hover:border-2 hover:ease-in-out hover:delay-200 focus:outline-none focus:border-red-500 placeholder-slate-400 hover:placeholder-slate-600"><br>
-            <button id="btnbg" class="py-2 px-2 mb-3 ml-3 rounded-[7px] shadow-lg bg-gradient-to-r from-red-200 via-lime-50 to-red-200 border border-[#ffe8ec] hover:font-medium">Log in</button>
+            <button id="btnbg" class="py-2 px-2 mb-3 ml-3 rounded-[7px] shadow-lg text-lg font-medium bg-red-500 border border-[#ffe8ec] hover:font-bold">Log in</button>
         </form>
         <p id="hide" class="text-center">Forgot password? <a href="" class="font-bold">Click here</a></p>
         <div id="success" class="mt-4 mx-14 w-[300px] md:mx-auto text-sm md:text-base text-black bg-white p-4 rounded shadow-md border border-red-500 hidden"></div>
     </div>
-    <div class="relative z-50 mt-20"><a href="https://github.com/timo10thy/pheonix">Git repo</a></div>
   </div>
   <script>
      document.getElementById("login-form").addEventListener("submit", function (e) {
