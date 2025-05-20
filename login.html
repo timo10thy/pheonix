@@ -47,35 +47,40 @@
     </div>
   </div>
   <script>
-     document.getElementById("login-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    let email = document.getElementById("login-email").value;
-    let password = document.getElementById("login-password").value;
-
-    fetch("https://test.blockfuselabs.com/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "accept": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then(async (response) => {
-        const data = await response.json();
-        if (response.ok) {
-          alert("Login successful!");
-          console.log("Login success:", data);
-        } else {
-          alert(data.message || "Login failed.");
-          console.error("Login error:", data);
-        }
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+  
+      let email = document.getElementById("login-email").value;
+      let password = document.getElementById("login-password").value;
+  
+      fetch("https://test.blockfuselabs.com/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          accept: "application/json",
+        },
+        body: JSON.stringify({ email, password }),
       })
-      .catch((error) => {
-        console.error("Network error during login:", error);
-        alert("Network error.");
-      });
-  });
+        .then(async (response) => {
+          const data = await response.json();
+          if (response.ok) {
+            alert("Login successful!");
+            console.log("Login success:", data);
+
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("userToken", data.token);
+  
+            window.location.href = "post.html";
+          } else {
+            alert(data.message || "Login failed.");
+            console.error("Login error:", data);
+          }
+        })
+        .catch((error) => {
+          console.error("Network error during login:", error);
+          alert("Network error.");
+        });
+    });
   </script>
 </body>
   
