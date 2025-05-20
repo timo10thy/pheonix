@@ -189,89 +189,53 @@
   </div>
 
   <script>
-    let hamburger = document.getElementById("menu-btn");
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+      alert("You must be logged in to access this page.");
+      window.location.href = "login.html";
+    }
+    const hamburger = document.getElementById("menu-btn");
     hamburger.addEventListener("click", function () {
-      let mobileM = document.getElementById("mobile-menu");
+      const mobileM = document.getElementById("mobile-menu");
       mobileM.classList.toggle("hidden");
     });
-
-    let add = document.getElementById("add");
+    const add = document.getElementById("add");
     add.addEventListener("click", (e) => {
       e.preventDefault();
+  
       const title = document.getElementById("title").value;
       const content = document.getElementById("content").value;
       const category_id = document.getElementById("category").value;
-
+  
+      const token = localStorage.getItem("userToken");
+  
+      if (!token) {
+        alert("Missing token. Please log in again.");
+        window.location.href = "login.html";
+        return;
+      }
+  
       fetch("https://test.blockfuselabs.com/api/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           accept: "application/json",
-          Authorization:
-            "Bearer 178|o4ypou3FTEwIA3vo38VvrcSGP4pDVP1KgSo2hYrf39595e54",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ title, content, category_id }),
       })
         .then(async (response) => {
           const data = await response.json();
-          console.log("Posted:", data);
-          alert("Post submitted successfully!");
+          if (response.ok) {
+            console.log("Posted:", data);
+            alert("Post submitted successfully!");
+          } else {
+            console.error("Post error:", data);
+            alert(data.message || "Post failed.");
+          }
         })
         .catch((error) => {
           console.error("Error posting:", error);
           alert("Error posting. Check console for details.");
-        });
-    });
-  </script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const btn = document.getElementById("categories-btn");
-      const dropdown = document.getElementById("categories-dropdown");
-
-      btn.addEventListener("click", () => {
-        dropdown.classList.toggle("hidden");
-      });
-
-      document.addEventListener("click", (e) => {
-        if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
-          dropdown.classList.add("hidden");
-        }
-      });
-
-      fetch("https://test.blockfuselabs.com/api/categories")
-        .then((response) => {
-          if (!response.ok) throw new Error("Network response was not ok");
-          return response.json();
-        })
-        .then((data) => {
-          dropdown.innerHTML = "";
-
-          const categories = Array.isArray(data) ? data : data.data || [];
-
-          if (categories.length === 0) {
-            dropdown.innerHTML =
-              '<li class="px-4 py-2">No categories found.</li>';
-            return;
-          }
-
-          categories.forEach((cat) => {
-            const li = document.createElement("li");
-            li.className = "px-4 py-2 hover:bg-lime-600 cursor-pointer";
-            li.textContent = cat.name || cat;
-
-            li.addEventListener("click", () => {
-              alert(`You selected category: ${li.textContent}`);
-              dropdown.classList.add("hidden");
-            });
-
-            dropdown.appendChild(li);
-          });
-        })
-        .catch((error) => {
-          dropdown.innerHTML =
-            '<li class="px-4 py-2">Failed to load categories.</li>';
-          console.error("Error fetching categories:", error);
         });
     });
   </script>
