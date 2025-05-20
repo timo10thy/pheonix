@@ -189,17 +189,7 @@
   </div>
 
   <script>
-    if (localStorage.getItem("isLoggedIn") !== "true") {
-      alert("You must be logged in to access this page.");
-      window.location.href = "login.html";
-    }
-    const hamburger = document.getElementById("menu-btn");
-    hamburger.addEventListener("click", function () {
-      const mobileM = document.getElementById("mobile-menu");
-      mobileM.classList.toggle("hidden");
-    });
-    const add = document.getElementById("add");
-    add.addEventListener("click", (e) => {
+    document.getElementById("add").addEventListener("click", async (e) => {
       e.preventDefault();
   
       const title = document.getElementById("title").value;
@@ -214,28 +204,78 @@
         return;
       }
   
-      fetch("https://your-api.com/posts", {
-        method: "POST",
-        headers: {
+      try {
+        const response = await fetch("https://test.blockfuselabs.com/api/posts", {
+          method: "POST",
+          headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("userToken"),
-        },
-        body: JSON.stringify({ title, content, category }),
-        })
-        .then(async (response) => {
-          const data = await response.json();
-          if (response.ok) {
-            console.log("Posted:", data);
-            alert("Post submitted successfully!");
-          } else {
-            console.error("Post error:", data);
-            alert(data.message || "Post failed.");
-          }
-        })
-        .catch((error) => {
-          console.error("Error posting:", error);
-          alert("Error posting. Check console for details.");
+            Authorization: "Bearer " + token,
+          },
+          body: JSON.stringify({ title, content, category_id }),
         });
+  
+        const data = await response.json();
+        console.log(data)
+  
+        if (response.ok) {
+          alert("Post submitted successfully!");
+          document.getElementById("display-title").textContent = title;
+          document.getElementById("display-content").textContent = content;
+          document.getElementById("display-category").textContent = "Category ID: " + category_id;
+          document.getElementById("new-post-display").classList.remove("hidden");
+  
+          document.getElementById("title").value = "";
+          document.getElementById("content").value = "";
+          document.getElementById("category").value = "";
+
+        } else {
+          console.error("Post error:", data);
+          alert(data.message || "Post failed.");
+        }
+      } catch (error) {
+        console.error("Error posting:", error);
+        alert("Error posting. Check console for details.");
+      }
+    });
+  
+    document.getElementById("remove").addEventListener("click", async (e) => {
+      e.preventDefault();
+  
+      const postId = document.getElementById("postId").value;
+      const token = localStorage.getItem("userToken");
+  
+      if (!postId) {
+        alert("Please enter a Post ID to delete.");
+        return;
+      }
+  
+      if (!token) {
+        alert("Missing token. Please log in again.");
+        window.location.href = "login.html";
+        return;
+      }
+  
+      try {
+        const response = await fetch(`https://test.blockfuselabs.com/api/posts/${postId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: "Bearer " + token,
+          },
+        });
+  
+        if (response.ok) {
+          alert(`Post with ID ${postId} deleted successfully.`);
+        } else {
+          const errorData = await response.json();
+          console.error("Delete failed:", errorData);
+          alert("Failed to delete post. Check console for details.");
+        }
+      } catch (error) {
+        console.error("Error deleting post:", error);
+        alert("Error deleting post. Check console for details.");
+      }
     });
   </script>
 </body>
