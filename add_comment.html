@@ -2,72 +2,83 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>comment section</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Comment Section</title>
 </head>
 
 <body class="bg-[#f7fbef] min-h-screen pt-10 px-4">
-    <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-lg text-black">
-        <h2 class="text-2xl font-bold mb-4">Add Comment to Post</h2>
+  <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-lg text-black">
+    <h2 class="text-2xl font-bold mb-4">Add Comment to Post</h2>
 
-        <label class="block mb-2 font-semibold">Post ID:</label>
-        <input type="number" id="postId" placeholder="Enter Post ID"
-            class="w-full p-2 border border-gray-300 rounded mb-4" />
+    <label class="block mb-2 font-semibold">Post ID:</label>
+    <input type="number" id="postId" placeholder="Enter Post ID"
+      class="w-full p-2 border border-gray-300 rounded mb-4" />
 
-        <label class="block mb-2 font-semibold">Comment:</label>
-        <textarea id="commentContent" placeholder="Write a comment..." rows="4"
-            class="w-full p-2 border border-gray-300 rounded mb-4"></textarea>
+    <label class="block mb-2 font-semibold">Comment:</label>
+    <textarea id="commentContent" placeholder="Write a comment..." rows="4"
+      class="w-full p-2 border border-gray-300 rounded mb-4"></textarea>
 
-        <button id="submitComment"
-            class="bg-lime-400 text-white py-2 px-4 rounded font-semibold w-full">
-            Post Comment
-        </button>
+    <button id="submitComment"
+      class="bg-lime-400 text-white py-2 px-4 rounded font-semibold w-full hover:bg-lime-500 transition">
+      Post Comment
+    </button>
 
-        <pre id="commentResponse" class="mt-4 whitespace-pre-wrap text-sm text-black"></pre>
-    </div>
+    <div id="commentResponse" class="mt-4 text-sm text-black font-medium"></div>
+  </div>
 
-    <script>
-        document.getElementById('submitComment').addEventListener('click', async () => {
-            const content = document.getElementById('commentContent').value.trim();
-            const postId = document.getElementById('postId').value;
-            const commentResponse = document.getElementById('commentResponse');
+  <script>
+    document.getElementById('submitComment').addEventListener('click', async () => {
+      const content = document.getElementById('commentContent').value.trim();
+      const postId = document.getElementById('postId').value;
+      const commentResponse = document.getElementById('commentResponse');
 
-            if (!postId) {
-                commentResponse.textContent = "❌ Please enter a valid Post ID.";
-                return;
-            }
+      if (!postId) {
+        commentResponse.textContent = "❌ Please enter a valid Post ID.";
+        commentResponse.classList.remove("text-green-600");
+        commentResponse.classList.add("text-red-600");
+        return;
+      }
 
-            if (!content) {
-                commentResponse.textContent = "❌ Comment cannot be empty.";
-                return;
-            }
+      if (!content) {
+        commentResponse.textContent = "❌ Comment cannot be empty.";
+        commentResponse.classList.remove("text-green-600");
+        commentResponse.classList.add("text-red-600");
+        return;
+      }
 
-            try {
-                const res = await fetch(`https://test.blockfuselabs.com/api/posts/${postId}/comments`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer 362|JSSJzJmT7KUILweNc6ian2v3UQaX5IPLuKjbS4cuf7cde4f5',
-                    },
-                    body: JSON.stringify({ content })
-                });
-
-                const data = await res.json();
-
-                if (!res.ok) {
-                    commentResponse.textContent = `❌ Failed to add comment:\n${JSON.stringify(data, null, 2)}`;
-                    return;
-                }
-
-                commentResponse.textContent = `✅ Comment added successfully:\n${JSON.stringify(data, null, 2)}`;
-                document.getElementById('commentContent').value = '';
-            } catch (error) {
-                commentResponse.textContent = `❌ Network error:\n${error.message}`;
-            }
+      try {
+        const res = await fetch(`https://test.blockfuselabs.com/api/posts/${postId}/comments`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer 362|JSSJzJmT7KUILweNc6ian2v3UQaX5IPLuKjbS4cuf7cde4f5',
+          },
+          body: JSON.stringify({ content })
         });
-    </script>
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          commentResponse.textContent = `❌ Failed to add comment:\n${data.message || JSON.stringify(data)}`;
+          commentResponse.classList.remove("text-green-600");
+          commentResponse.classList.add("text-red-600");
+          return;
+        }
+
+    
+        commentResponse.textContent = `✅ "${data.content}"`;
+        commentResponse.classList.remove("text-red-600");
+        commentResponse.classList.add("text-green-600");
+        document.getElementById('commentContent').value = '';
+      } catch (error) {
+        commentResponse.textContent = `❌ Network error:\n${error.message}`;
+        commentResponse.classList.remove("text-green-600");
+        commentResponse.classList.add("text-red-600");
+      }
+    });
+  </script>
 </body>
 
 </html>
